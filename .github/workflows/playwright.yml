@@ -20,11 +20,20 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
+    - name: Start API server
+      run: cd apps/api && yarn dev &
+    
+    - name: Start Web server
+      run: cd apps/web && yarn dev &
+      
+    - name: Wait for servers to start
+      run: sleep 10
+
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
     - name: Run E2E tests
-      run: yarn test
+      run: npx playwright test
 
     - name: Get current date
       id: get-date
