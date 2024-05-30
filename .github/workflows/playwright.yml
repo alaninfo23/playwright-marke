@@ -24,14 +24,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Navigate to API directory
-      run: |
-        cd ./apps/api || exit
-        echo "Current directory: $(pwd)"
+      run: cd apps/api || exit
 
-    - name: Run API server
-      run: yarn dev &
-
-    - name: Navigate to Web directory
-      run: |
-        cd ../web || exit
-        echo "Current directory: $(pwd)"
+    - name: Print current directory
+      run: echo "Current directory: $(pwd)"
