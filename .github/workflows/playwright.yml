@@ -21,10 +21,10 @@ jobs:
       run: yarn install
 
     - name: Start API server
-      run: cd apps/api && yarn dev &
+      run: cd ./apps/api && yarn dev &
     
     - name: Start Web server
-      run: cd apps/web && yarn dev &
+      run: cd ./apps/web && yarn dev &
       
     - name: Wait for servers to start
       run: sleep 10
