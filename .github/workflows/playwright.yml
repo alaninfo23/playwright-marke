@@ -25,7 +25,7 @@ jobs:
 
     - name: Navigate to API directory
       run: |
-        cd ./apps/api
+        cd ./apps/api || exit
         echo "Current directory: $(pwd)"
 
     - name: Run API server
@@ -33,5 +33,5 @@ jobs:
 
     - name: Navigate to Web directory
       run: |
-        cd ./apps/web
+        cd ../web || exit
         echo "Current directory: $(pwd)"
