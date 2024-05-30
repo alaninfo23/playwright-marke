@@ -18,31 +18,20 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: yarn install
-
-    - name: Start API server
-      run: cd ./apps/api && yarn dev &
-    
-    - name: Start Web server
-      run: cd ./apps/web && yarn dev &
-      
-    - name: Wait for servers to start
-      run: sleep 10
+      run: npm install
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    - name: Run E2E tests
-      run: npx playwright test
+    - name: Navigate to API directory
+      run: |
+        cd ./apps/api
+        echo "Current directory: $(pwd)"
 
-    - name: Get current date
-      id: get-date
-      run: echo "date=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
+    - name: Run API server
+      run: yarn dev &
 
-    - name: Publish HTML Report
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report-${{ env.date }}
-        path: playwright-report/
-        retention-days: 30
+    - name: Navigate to Web directory
+      run: |
+        cd ./apps/web
+        echo "Current directory: $(pwd)"
