@@ -9,22 +9,24 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - name: Get code
-      uses: actions/checkout@v4
+      - name: Get code
+        uses: actions/checkout@v4
 
-    - name: Install Node 18
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
+      - name: Install Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-    - name: Navigate to API directory
-      run: cd apps/api || exit
+      - name: Navigate to API directory
+        run: cd apps/api || exit
 
-    - name: Print current directory
-      run: echo "Current directory: $(pwd)"
+      - name: Print current directory
+        run: |
+          pwd
+          
